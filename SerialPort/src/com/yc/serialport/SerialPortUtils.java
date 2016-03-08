@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android.util.Log;
+
 /**
  * ²âÊÔ´®¿Ú
  * @author YC
@@ -91,6 +93,7 @@ public class SerialPortUtils {
 	public boolean sendBuffer(byte[] buffer)
 	{
 		boolean result = false;
+		printArray(buffer, buffer.length);
 		try {
 			if (mOutputStream != null)
 			{
@@ -102,6 +105,24 @@ public class SerialPortUtils {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	private void printArray(byte[] buffer, int size) {
+		String result = null;
+		for (int i = 0; i < size; i++)
+		{
+			
+			if (result != null)
+			{
+//				result = result + Integer.toHexString(buffer[i]&0xFF) + " ";
+				result = result + String.format("%02x", buffer[i]&0xFF) + " ";
+			}
+			else
+			{
+				result = String.format("%02x", buffer[i]&0xFF) + " ";
+			}
+		}
+		Log.i("Send", result);
 	}
 	
 	private class ReadThread extends Thread {

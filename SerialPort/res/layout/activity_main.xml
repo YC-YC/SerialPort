@@ -9,6 +9,12 @@
         android:layout_height="wrap_content"
         android:onClick="openSerial"
         android:text="打开串口" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendCmd"
+        android:text="发送数据" />
     
     <Button
         android:layout_width="wrap_content"
