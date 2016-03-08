@@ -19,7 +19,7 @@ public class SerialPort {
 	private FileOutputStream mFileOutputStream;
 	
 	public SerialPort(File device, int baudrate) throws IOException{
-		FileDescriptor mFd = open(device.getAbsolutePath(), baudrate);
+		mFd = open(device.getAbsolutePath(), baudrate);
 		if (mFd == null)
 		{
 			throw new IOException();

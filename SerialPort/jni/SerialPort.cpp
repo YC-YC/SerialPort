@@ -169,13 +169,10 @@ JNIEXPORT jint JNICALL jni_close
 {
 	jclass SerialPortClass = env->GetObjectClass(thiz);
 	jclass FileDescriptorClass = env->FindClass("java/io/FileDescriptor");
-
 	jfieldID mFdID = env->GetFieldID(SerialPortClass, "mFd", "Ljava/io/FileDescriptor;");
 	jfieldID descriptorID = env->GetFieldID(FileDescriptorClass, "descriptor", "I");
-
 	jobject mFd = env->GetObjectField(thiz, mFdID);
 	jint descriptor = env->GetIntField(mFd, descriptorID);
-
 	LOGD("close(fd = %d)", descriptor);
 	close(descriptor);
 	return 1;
