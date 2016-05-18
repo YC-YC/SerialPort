@@ -14,9 +14,11 @@ import android.util.Log;
  */
 public class SerialPortUtils {
 	
-	private static final String PATH = "/dev/ttyS0";  
-    private static final int BAUDRATE = 115200;
+//	private static final String PATH = "/dev/ttymxc2";  
+//	private static final int BAUDRATE = 38400;
 	
+	private static final String TAG = "SerialPort";
+
 	private static SerialPortUtils protUtils;
 	
 	private SerialPort mSerialPort = null;
@@ -49,19 +51,19 @@ public class SerialPortUtils {
 	/**
 	 * 初始化串口信息
 	 */
-	public void openSerialPort()
+	public void openSerialPort(String path, int baud)
 	{
 		try {
-			mSerialPort = new SerialPort(new File(PATH), BAUDRATE);
+			mSerialPort = new SerialPort(new File(path), baud);
 			mInputStream = mSerialPort.getInputStream();
 			mOutputStream = mSerialPort.getOutputStream();
 			
 			mReadThread = new ReadThread();
 			mIsReadThreadStop = false;
 			mReadThread.start();
-			
+			Log.i(TAG, "Open SerialPort " + path + ", baud = " + baud + " Sucesses!");
 		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
+			Log.i(TAG, "Open SerialPort " + path + ", baud = " + baud + " Error!");
 			e.printStackTrace();
 		}
 	}
@@ -80,9 +82,7 @@ public class SerialPortUtils {
 	}
 	
 	/**
-	 * 
 	 * @param cmd
-	 * @return
 	 */
 	public boolean sendCmd(String cmd)
 	{
@@ -101,7 +101,6 @@ public class SerialPortUtils {
 				result = true;
 			}
 		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		return result;
@@ -122,7 +121,7 @@ public class SerialPortUtils {
 				result = String.format("%02x", buffer[i]&0xFF) + " ";
 			}
 		}
-		Log.i("Send", result);
+		Log.i(TAG, "Send" + result);
 	}
 	
 	private class ReadThread extends Thread {

@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+
 /**
  * @author YC
- * @time 2016-3-7 ÏÂÎç7:45:35
+ * @time 2016-3-7 ä¸‹åˆ7:45:35
  */
 public class SerialPort {
 
@@ -29,7 +30,7 @@ public class SerialPort {
 	}
 	
 	/**
-	 * »ñÈ¡ÊäÈëÁ÷
+	 * è·å–è¾“å…¥æµ
 	 * @return
 	 */
 	public InputStream getInputStream() {
@@ -38,7 +39,7 @@ public class SerialPort {
 
 
 	/**
-	 * »ñÈ¡Êä³öÁ÷
+	 * è·å–è¾“å‡ºæµ
 	 * @return
 	 */
 	public OutputStream getOutputStream() {
@@ -49,7 +50,7 @@ public class SerialPort {
 	private native FileDescriptor open(String path, int baudrate);
 	
 	/**
-	 * ¹Ø±Õ´®¿Ú
+	 * å…³é—­ä¸²å£
 	 * @return
 	 */
 	public native int close();

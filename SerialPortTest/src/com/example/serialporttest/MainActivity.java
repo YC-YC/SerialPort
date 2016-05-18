@@ -1,10 +1,11 @@
-package com.yc.serialport;
+package com.example.serialporttest;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.yc.serialport.SerialPortUtils;
 import com.yc.serialport.SerialPortUtils.OnDataReceiveListener;
 
 public class MainActivity extends Activity implements OnDataReceiveListener {
@@ -93,6 +94,5 @@ public class MainActivity extends Activity implements OnDataReceiveListener {
 		}
 		Log.i("Receive", result);
 	}
-	
 	
 }
